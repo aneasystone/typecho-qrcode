@@ -66,8 +66,11 @@ class QRCode_Plugin implements Typecho_Plugin_Interface
     public static function render($text, $widget)
     {
       $content = $text;
-      $content .= '<hr />';
-      $content .= '<div style="margin:0 auto; text-align: center; display: none;">';
+      $content .= '<style>';
+      $content .= '  #qrcodeWrapper { margin:0 auto; text-align: center; }';
+      $content .= '  #qrcodeWrapper img { margin:0 auto; }';
+      $content .= '</style>';
+      $content .= '<div id="qrcodeWrapper"">';
       $content .= 	'<div id="qrcode"></div>';
       $content .= 	'<div>扫描二维码，在手机上阅读！</div>';
       $content .= '</div>';
