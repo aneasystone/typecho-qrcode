@@ -24,6 +24,6 @@
 
 可以，你在编辑文章时，可以为文章添加自定义字段。如果不想该文章下方显示二维码，可以添加一个自定义字段 `hideQrCode`，值设置为 `true`。
 
-[images/ud-fields.png](images/ud-fields.png)
+![images/ud-fields.png](images/ud-fields.png)
 
 如果有任何问题，欢迎给我提交 Issues 或 PR。
