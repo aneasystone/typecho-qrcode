@@ -65,16 +65,24 @@ class QRCode_Plugin implements Typecho_Plugin_Interface
      */
     public static function render($text, $widget)
     {
-      $content = $text;
-      $content .= '<style>';
-      $content .= '  #qrcodeWrapper { margin:0 auto; text-align: center; }';
-      $content .= '  #qrcodeWrapper img { margin:0 auto; }';
-      $content .= '</style>';
-      $content .= '<div id="qrcodeWrapper"">';
-      $content .= 	'<div id="qrcode"></div>';
-      $content .= 	'<div>扫描二维码，在手机上阅读！</div>';
-      $content .= '</div>';
-      return $content;
+        // 获取自定义字段 hideQrCode 的值
+        $cid = Typecho_Widget::widget('Widget_Archive')->cid;
+        $db = Typecho_Db::get();
+        $hideQrCode = $db->fetchAll($db->select()->from('table.fields')->where('cid = ?', $cid)->where('name = ?', 'hideQrCode'));
+        if($hideQrCode[0] && $hideQrCode[0]['str_value'] == 'true') {
+            return $text;
+        }
+
+        $content = $text;
+        $content .= '<style>';
+        $content .= '  #qrcodeWrapper { margin:0 auto; text-align: center; }';
+        $content .= '  #qrcodeWrapper img { margin:0 auto; }';
+        $content .= '</style>';
+        $content .= '<div id="qrcodeWrapper"">';
+        $content .= 	'<div id="qrcode"></div>';
+        $content .= 	'<div>扫描二维码，在手机上阅读！</div>';
+        $content .= '</div>';
+        return $content;
     }
 
 	public static function footer()
